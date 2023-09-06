@@ -11,11 +11,12 @@ class UsuarioRegistrationHome extends StatefulWidget {
   const UsuarioRegistrationHome({super.key});
 
   @override
-  State<UsuarioRegistrationHome> createState() => _UsuarioRegistrationHomeState();
+  State<UsuarioRegistrationHome> createState() =>
+      _UsuarioRegistrationHomeState();
 }
 
 class _UsuarioRegistrationHomeState extends State<UsuarioRegistrationHome> {
-final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _userController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPassContraoller = TextEditingController();
@@ -38,8 +39,8 @@ final _formKey = GlobalKey<FormState>();
 
   void verfificarExitencia() {
     final nombreUsuario = _userController.text;
-    final password=_passwordController.text;
-    final confirmPassword= _confirmPassContraoller.text;
+    final password = _passwordController.text;
+    final confirmPassword = _confirmPassContraoller.text;
     if (usuarioExistente(nombreUsuario)) {
       showDialog(
           context: context,
@@ -56,8 +57,8 @@ final _formKey = GlobalKey<FormState>();
               ],
             );
           });
-    } else if(password != confirmPassword){
-       showDialog(
+    } else if (password != confirmPassword) {
+      showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
@@ -72,8 +73,8 @@ final _formKey = GlobalKey<FormState>();
               ],
             );
           });
-    }else if(image.isEmpty){
-       showDialog(
+    } else if (image.isEmpty) {
+      showDialog(
           context: context,
           builder: (context) {
             return AlertDialog(
@@ -88,7 +89,7 @@ final _formKey = GlobalKey<FormState>();
               ],
             );
           });
-    }else {
+    } else {
       var newUsuario = Usuario(
           user: nombreUsuario,
           password: _passwordController.text,
@@ -103,17 +104,17 @@ final _formKey = GlobalKey<FormState>();
               actions: [
                 TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>
-                      const UsuarioHome(),
-                      ),
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const UsuarioHome(),
+                        ),
                       );
                     },
                     child: const Text("Cerrar"))
               ],
             );
           });
-
-      
     }
   }
 
@@ -132,7 +133,7 @@ final _formKey = GlobalKey<FormState>();
                 style: TextStyle(
                   fontSize: 22,
                 ),
-                textAlign:TextAlign.center,
+                textAlign: TextAlign.center,
               ),
               const SizedBox(
                 height: 34,
@@ -153,15 +154,17 @@ final _formKey = GlobalKey<FormState>();
                     fit: BoxFit.cover,
                   ),
                 ),
-                const SizedBox(height: 34,),
+              const SizedBox(
+                height: 34,
+              ),
               ElevatedButton(
                 onPressed: _pickImage,
-                style: ElevatedButton.styleFrom(
-                  fixedSize: const Size(9, 50)
-                ),
+                style: ElevatedButton.styleFrom(fixedSize: const Size(9, 50)),
                 child: const Text('Selecciona foto'),
               ),
-               const SizedBox(height: 12,),
+              const SizedBox(
+                height: 12,
+              ),
               TextFormField(
                 decoration: const InputDecoration(labelText: "Nombre"),
                 controller: _userController,
@@ -171,7 +174,9 @@ final _formKey = GlobalKey<FormState>();
                   }
                 },
               ),
-              const SizedBox(height: 12,),
+              const SizedBox(
+                height: 12,
+              ),
               TextFormField(
                 decoration: const InputDecoration(labelText: "Contraseña"),
                 controller: _passwordController,
@@ -181,9 +186,12 @@ final _formKey = GlobalKey<FormState>();
                   }
                 },
               ),
-              const SizedBox(height: 12,),
+              const SizedBox(
+                height: 12,
+              ),
               TextFormField(
-                decoration: const InputDecoration(labelText: "Confirmar contraseña"),
+                decoration:
+                    const InputDecoration(labelText: "Confirmar contraseña"),
                 controller: _confirmPassContraoller,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -191,17 +199,24 @@ final _formKey = GlobalKey<FormState>();
                   }
                 },
               ),
-              const SizedBox(height: 15,),
+              const SizedBox(
+                height: 15,
+              ),
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    if(_formKey.currentState!.validate()){
-                    verfificarExitencia();
+                    if (_formKey.currentState!.validate()) {
+                      verfificarExitencia();
                     }
                   },
-                  style: ElevatedButton.styleFrom(backgroundColor: Color.fromARGB(255, 46, 130, 49), ),
-                  child: const Text('Registrar',style: TextStyle(color:Colors.white),),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromARGB(255, 46, 130, 49),
+                  ),
+                  child: const Text(
+                    'Registrar',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               )
             ],

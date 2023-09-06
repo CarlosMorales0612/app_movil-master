@@ -1,28 +1,27 @@
 import 'package:app_movil/datos/producto.list.dart';
 import 'package:app_movil/presentation/screens/home_screen.dart';
+import 'package:app_movil/presentation/screens/producto_home_screen.dart';
 import 'package:app_movil/presentation/widgets/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:app_movil/dominio/models/producto.dart';
 import 'package:image_picker/image_picker.dart';
 
-
-
 class ProductoRegistadoScreen extends StatefulWidget {
   const ProductoRegistadoScreen({super.key});
 
   @override
-  State<ProductoRegistadoScreen> createState() => _ProductoRegistadoScreenState();
+  State<ProductoRegistadoScreen> createState() =>
+      _ProductoRegistadoScreenState();
 }
 
 class _ProductoRegistadoScreenState extends State<ProductoRegistadoScreen> {
-
- final _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _quiantityController = TextEditingController();
   String image = '';
 
- Future<void> _pickImage() async {
+  Future<void> _pickImage() async {
     final pickImage =
         await ImagePicker().pickImage(source: ImageSource.gallery);
 
@@ -33,11 +32,10 @@ class _ProductoRegistadoScreenState extends State<ProductoRegistadoScreen> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: const AppBarMenu(title: 'Registrar Producto'),
+      appBar: const AppBarMenu(title: 'Registrar Producto'),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Form(
@@ -75,7 +73,6 @@ class _ProductoRegistadoScreenState extends State<ProductoRegistadoScreen> {
                   return null;
                 },
               ),
-           
               ElevatedButton(
                   onPressed: _pickImage,
                   child: const Text('Seleccionar una imagen')),
@@ -87,14 +84,14 @@ class _ProductoRegistadoScreenState extends State<ProductoRegistadoScreen> {
                       if (_formKey.currentState!.validate()) {
                         var newProducto = Product(
                             name: _nameController.text,
-                            description: _descriptionController.text,                           
+                            description: _descriptionController.text,
                             image: image);
-                            
+
                         productos.add(newProducto);
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => HomeScreen(),
+                              builder: (context) => ProductoHomeScreen(),
                             ));
 
                         ScaffoldMessenger.of(context).showSnackBar(
